@@ -1,5 +1,6 @@
 ### This project is in progress
 
+### Live project: https://nextjs-appwrite-seven.vercel.app/ 
 ## Getting Started
 
 First, Download the dependencies:
