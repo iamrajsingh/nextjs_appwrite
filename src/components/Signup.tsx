@@ -17,7 +17,8 @@ const Signup = () => {
 
   const create = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
+    if (formData.password.length >= 8) {
+      try {
       const userData = await appwriteService.createUserAccount(formData);
 
       if (userData) {
@@ -28,6 +29,11 @@ const Signup = () => {
     } catch (error: any) {
       setError(error.message);
     }
+    }else{
+      setError("Password must be at least eight characters long.")
+    }
+    
+    
   };
 
   return (

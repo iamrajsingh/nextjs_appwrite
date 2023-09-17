@@ -13,10 +13,16 @@ const Login = () => {
     password: "",
   });
   const [error, setError] = useState("");
+  
+  console.log(formData.password.length);
+
+
 
   const login = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
+
+    if (formData.password.length >= 8) {
+      try {
       const session = await appwriteService.login(formData);
 
       if (session) {
@@ -26,6 +32,11 @@ const Login = () => {
     } catch (error: any) {
       setError(error.message);
     }
+    }else {
+      setError("Password must be at least eight characters long.");
+    }
+
+    
   };
 
   return (
@@ -48,7 +59,7 @@ const Login = () => {
             Sign Up
           </Link>
         </p>
-        {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+        {error && <p className="text-red-800 mt-8 text-center">{error}</p>}
         <form onSubmit={login} className="mt-8">
           <div className="space-y-5">
             <div>
