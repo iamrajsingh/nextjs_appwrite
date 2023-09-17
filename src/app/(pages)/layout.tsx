@@ -5,6 +5,7 @@ import Blog from "@/components/Blog";
 import appwriteService from "@/appwrite/config";
 import { AuthProvider } from "@/context/authContext";
 import React, { useState, useEffect } from "react";
+import toast, { Toaster } from 'react-hot-toast';
 
 const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
   const [authStatus, setAuthStatus] = useState(false);
@@ -42,7 +43,9 @@ const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
             </div>
           </div>
           <Header />
-          <main className="px-2 py-4">{children}</main>
+          <main className="px-2 py-4">{children}
+          <Toaster />
+          </main>
         </>
       )}
     </AuthProvider>

@@ -4,6 +4,7 @@ import useAuth from "@/context/useAuth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { FormEvent, useState } from "react";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const router = useRouter();
@@ -14,9 +15,6 @@ const Login = () => {
   });
   const [error, setError] = useState("");
   
-  console.log(formData.password.length);
-
-
 
   const login = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,9 +26,12 @@ const Login = () => {
       if (session) {
         setAuthStatus(true);
         router.push("/profile");
+        toast.success('login Successfully !');
       }
     } catch (error: any) {
       setError(error.message);
+      toast.error('Incorrect Email and password!');
+
     }
     }else {
       setError("Password must be at least eight characters long.");

@@ -4,6 +4,7 @@ import useAuth from "@/context/useAuth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { FormEvent, useState } from "react";
+import toast from "react-hot-toast";
 
 const Signup = () => {
   const router = useRouter();
@@ -25,6 +26,8 @@ const Signup = () => {
         setAuthStatus(true);
         router.push("/profile");
         console.log("userData", userData);
+        toast.success('Account Created!');
+
       }
     } catch (error: any) {
       setError(error.message);
